@@ -1,0 +1,61 @@
+const Film = require("./film_model");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv"); // ACCESS ENV VARIABLES
+const express = require("express");
+const path = require("path");
+
+const app = express();
+
+app.set("view engine", "pug");
+
+app.set("views", path.join(__dirname, "views"));
+
+dotenv.config({ path: "./config.env" });
+
+DB = process.env.DATABASE;
+
+mongoose
+  .connect(DB, {
+    // Connecting to hosted database
+    // .connect(process.env.DATABASE_LOCAL, { // Connecting to local database
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((con) => console.log("Database connection successful"));
+
+let films = [];
+
+require("fs")
+  .readFileSync("./films.txt", "utf-8")
+  .split(/\r?\n/)
+  .forEach(function (line, index) {
+    if (line != "") {
+      films.push({ name: line, position: index + 1 });
+    }
+  });
+
+const createFilm = async () => {
+  try {
+    await Film.create(films);
+    console.log("Created film");
+  } catch (err) {
+    console.log(err);
+  }
+  process.exit();
+};
+
+const deleteFilms = async () => {
+  try {
+    await Film.deleteMany();
+    console.log("Deleted films");
+  } catch (err) {
+    console.log(err);
+  }
+  process.exit();
+};
+
+if (process.argv[2] === "--import") {
+  createFilm();
+} else if (process.argv[2] === "--delete") {
+  deleteFilms();
+}

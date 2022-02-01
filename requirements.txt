@@ -1,0 +1,11 @@
+All films from database are displayed on the webpage next to checkboxes.
+When the user has filled out their name and the checked the films watched,
+they can click submit. This will add their name to the whoHasWatched field.
+
+
+
+Extra:
+- There is also an extra checkbox for wanting to watch the film. Ticking it
+will add their name to the wantsToWatch field.
+- There is a second page to the website which shows all the films with the number
+of people who want to watch and the number of people who have watched adjacent.
