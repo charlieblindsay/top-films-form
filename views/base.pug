@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      title Top Films Form | #{title}
+  
+body 
+  form(id='film-form')
+    label(for='name')='Enter your name here: '
+    input(type='text', id='username', name='username')
+    each film in films
+      div
+        input(type='checkbox' class='checkbox' id=film._id name=film.name)
+        label(for=film._id)=film.name
+  
+  button(id='film-form-submit-button') Submit
+
+  script(src='/script.js')
