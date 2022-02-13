@@ -2,6 +2,7 @@ const path = require('path');
 const Film = require("./film_model");
 const express = require("express");
 const morgan = require('morgan');
+const compression = require('compression');
 
 const filmRouter = require('./filmRoutes');
 const viewRouter = require('./viewsRoutes');
@@ -13,8 +14,10 @@ app.set('views', './views');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json())
 
 app.use(morgan('dev'));
+app.use(compression());
 
 app.use('/api/v1/films', filmRouter);
 app.use('/', viewRouter);

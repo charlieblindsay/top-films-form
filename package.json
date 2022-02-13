@@ -5,11 +5,15 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "watch:js": "parcel watch ./public/index.js --out-dir ./public --out-file bundle.js",
+    "build:js": "parcel watch ./public/index.js --out-dir ./public --out-file bundle.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
+    "compression": "^1.7.4",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "line-reader": "^0.4.0",
@@ -18,6 +22,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "parcel-bundler": "^1.12.5"
   }
 }

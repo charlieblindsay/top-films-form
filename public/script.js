@@ -7,8 +7,13 @@ button.addEventListener('click', () => {
   );
 
   filmFormResponseObject['username'] = document.querySelector('#username').value;
-  console.log(filmFormResponseObject);
+
+  axios({
+    method: 'patch',
+    url: 'api/v1/films',
+    data: filmFormResponseObject,
+    headers: {
+      'Content-type': 'application/json',
+    },
+  })
 })
-
-
-// );
