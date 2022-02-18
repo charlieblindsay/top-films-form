@@ -35,6 +35,18 @@ const createFilm = async () => {
   process.exit();
 };
 
+const removeDuplicateNames = async () => {
+  try{
+    films = await Film.find();
+    films.forEach(film => {
+      film.whoHasWatched = [...new Set(films.whoHasWatched)];
+    })
+  }
+  catch(err){
+
+  }
+}
+
 const deleteFilms = async () => {
   try {
     await Film.deleteMany();
@@ -49,4 +61,6 @@ if (process.argv[2] === "--import") {
   createFilm();
 } else if (process.argv[2] === "--delete") {
   deleteFilms();
+} else if (process.argv[2] === "--remove") {
+  removeDuplicateNames();
 }

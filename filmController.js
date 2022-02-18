@@ -21,12 +21,13 @@ exports.addUserChoices = async (req, res) => {
     try{
         let films = await Film.find();
         let selectedFilmIDs = []
+        console.log(req.body);
         films.forEach(film => {
             if (req.body[film._id] == true){
                 selectedFilmIDs.push(film._id);
             }
         })
-        await Film.updateMany({_id: selectedFilmIDs}, {$push: {whoHasWatched: req.body.username}})
+        await Film.updateMany({_id: selectedFilmIDs}, {$addToSet: {whoHasWatched: req.body.username}})
         res.status(200).json({
             status: 'success',
             name: req.body.username,

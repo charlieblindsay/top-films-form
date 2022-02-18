@@ -1,9 +1,17 @@
 const Film = require('./film_model')
 
-exports.getFilmNames = async (req, res) => {
+exports.getFilmForm = async (req, res) => {
     const films = await Film.find();
 
-    res.status(200).render('base', {
+    res.status(200).render('form', {
+        films: films
+    })
+}
+
+exports.getFilmData = async (req, res) => {
+    const films = await Film.find();
+    
+    res.status(200).render('data', {
         films: films
     })
 }

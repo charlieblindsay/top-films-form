@@ -6,7 +6,8 @@ button.addEventListener('click', () => {
     {}
   );
 
-  filmFormResponseObject['username'] = document.querySelector('#username').value;
+  filmFormResponseObject['username'] = document.getElementById('username').value;
+  console.log(filmFormResponseObject['username']);
 
   axios({
     method: 'patch',

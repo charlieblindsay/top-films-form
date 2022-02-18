@@ -8,15 +8,14 @@ html
   
 body 
   form(id='film-form')
-    label(for='name')='Enter your name here: '
-    input(type='text', id='username', name='username')
+    label(for='username')='Enter your name here: '
+    input(type='text' id='username')
     each film in films
       div
-        input(type='checkbox' class='checkbox' id=film._id name=film.name)
+        input(type="checkbox" class='checkbox' id=film._id)
         label(for=film._id)=film.name
   
   button(id='film-form-submit-button') Submit
-
+  
   script(src='/script.js')
-  //- script(src='/bundle.js')
   script(src="https://unpkg.com/axios/dist/axios.min.js")
